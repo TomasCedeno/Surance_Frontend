@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com");
+@import url("https://fonts.gstatic.com");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+}
+
+body {
+    background-image: url(../Images/bg_log_reg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(6px);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+}
+
+.general_container {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+}
+
+.login-register_container {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(100px);
+    background-color: rgba(161, 136, 166, 0.6);
+    border-radius: 10px;
+}
+
+.login-register_container div {
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
+}
+
+.login-register_container div p,
+.login-register_container div button {
+    margin-top: 30px;
+}
+
+.login-register_container div h2 {
+    font-size: 26px;
+}
+
+.login-register_container button {
+    padding: 10px 40px;
+    border: 2px solid white;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    transition: all 300ms;
+    border-radius: 10px;
+}
+
+.login-register_container button:hover {
+    background: white;
+    color: #7f5a83;
+}
+
+/* Iniciamos con los formularios */
+
+.forms_containers {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    top: -185px;
+    left: 420px;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.forms_containers form {
+    width: 100%;
+    padding: 80px 20px;
+    background: white;
+    position: absolute;
+    border-radius: 20px;
+}
+
+.forms_containers form h2 {
+    color: #7f5a83;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.forms_containers form input {
+    width: 100%;
+    margin-top: 20px;
+    /* padding: 10px; */
+    border: none;
+    background: #e2e2e2;
+    font-size: 16px;
+    outline: none;
+    border-radius: 10px;
+}
+
+.forms_containers form button {
+    padding: 10px 40px;
+    margin-top: 40px;
+    border: none;
+    font-size: 14px;
+    color: white;
+    background: #7f5a83;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.login_form {
+    opacity: 1; 
+    display: block;
+}
+
+.register_form {
+    display: none;
+}
+
+.forms_containers i {
+    position: absolute;
+    margin: 32px 0 0 8px;
+}
+
+.login_form input {
+    padding: 10px 10px 10px 30px;
+}
+
+.register_form input {
+    padding: 10px;
+}
+
+/* Responsive Desing */
+
+@media screen and (max-width: 850px) {
+
+    main{
+        margin-top: 50px;
+    }
+
+    .login-register_container {
+        max-width: 350px;
+        height: 300px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .login-register_container div {
+        margin: 0;
+        position: absolute;
+    }
+
+    /* Formularios */
+
+    .forms_containers {
+        top: -10px;
+        left: -5px;
+        margin: auto;
+    }
+
+    .forms_containers form {
+        position: relative;
+    }
+    
+}
