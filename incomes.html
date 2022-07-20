@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./styles/menu_nav.css">
+	<link rel="stylesheet" href="./styles/incomes.css">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+	<title>Surance</title>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="home.html" class="brand"><i class='bx bx-wallet icon'></i>SURANCE</a>
+
+		<ul class="side-menu">
+			<li><a href="home.html"><i class='bx bxs-dashboard icon'></i>Inicio</a></li>
+			<li class="divider" data-text="Finanzas">Finanazas</li>
+			<li><a href="incomes.html" class="active"><i class='bx bx-money icon'></i> Ingresos</a></li>
+			<li><a href="expenses.html"><i class='bx bx-credit-card icon'></i> Egresos</a></li>
+			<li class="divider" data-text="Ahorros">Ahorros</li>
+			<li><a href="goals.html"><i class='bx bxs-coin-stack icon'></i> Plan de Ahorro</a></li>
+			<li class="divider" data-text="Configuración">Configuración</li>
+			<li><a href="settings.html"><i class='bx bxs-cog icon'></i> Configuración</a></li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar'></i>
+			<h2>Ingresos</h2>
+			<a href="#" class="nav-link">
+				<i class='bx bxs-bell icon'></i>
+				<span class="badge">69</span>
+			</a>
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="https://www.elcolombiano.com/binrepository/841x562/0c0/0d0/none/11101/UPMB/40305366_40305366_20220713144007.jpg"
+					alt="">
+				<ul class="profile-link">
+					<li><a href="#"><i class='bx bxs-user-circle icon'></i> Cuenta</a></li>
+					<li><a href="#"><i class='bx bxs-cog'></i> Configuración</a></li>
+					<li><a href="./index.html"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+
+
+		<!--CONTENIDO DE LAS OTRAS PÁGINAS A PARTIR DE AQUÍ-->
+
+		<main>
+			<div class="data">
+
+				<!-- Register income -->
+				<div class="income_page card">
+					<div class="container">
+						<div class="title">Registro de Ingresos</div>
+						<form action="#">
+							<div class="register-input">
+								<div class="input-box">
+									<span class="details_input">Valor</span>
+									<input type="text" placeholder="Ingrese el valor" required>
+								</div>
+								<div class="input-box">
+									<span class="details_input">Fecha</span>
+									<input type="text" placeholder="Ingrese DD/MM/AA" required>
+								</div>
+								<div class="input-box">
+									<span class="details_input">Categoria</span>
+									<div class="container_category">
+										<div class="select-box">
+											<div class="options-container">
+
+												<div class="option">
+													<input type="radio" class="radio"  name="category" />
+													<label for="film">Venta</label>
+												</div>
+
+												<div class="option">
+													<input type="radio" class="radio"  name="category" />
+													<label for="science">Sueldo</label>
+												</div>
+
+												<div class="option">
+													<input type="radio" class="radio"  name="category" />
+													<label for="art">Prestamo</label>
+												</div>
+												<div class="option">
+													<input type="radio" class="radio"  name="category" />
+													<label for="art">Otro</label>
+												</div>
+											</div>
+											<div class="selected">
+												Seleccione
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="input-box">
+									<span class="details_input">Descripción</span>
+									<input type="text" placeholder="Opcional">
+								</div>
+							</div>
+							<div class="button">
+								<input type="submit" value="Registrar">
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+				<!-- graphic -->
+				<div class="right-section">
+
+					<div class="graphic_history card">
+						<div class="head">
+							<div>
+								<h3>Grafico de Ingresos</h3>
+								<div id="columnchart_material"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<!-- table income -->
+
+			<div class="history_table">
+				<div class="incomes card">
+					<div class="head">
+						<h3>Historial Ingresos</h3>
+						<div id="history-container">
+							<table>
+								<thead>
+									<tr>
+										<th>Valor</th>
+										<th>Fecha</th>
+										<th>Categoría</th>
+										<th>Descripción</th>
+									</tr>
+								</thead>
+								<tr>
+									<td>$60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Venta de carro</td>
+								</tr>
+								<tr>
+									<td>$100.00</td>
+									<td>15/04/2022</td>
+									<td>Prestamo</td>
+									<td>Banco</td>
+								</tr>
+								<tr>
+									<td>$100.00</td>
+									<td>15/04/2022</td>
+									<td>Salario</td>
+									<td>Quincena</td>
+								</tr>
+								<tr>
+									<td>$100.00</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Venta de carro</td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+				</div>
+		</main>
+
+		<script src="./js/menu_nav.js"></script>
+		<script src="./js/incomes.js"></script>
+
+
+</body>
+
+</html>

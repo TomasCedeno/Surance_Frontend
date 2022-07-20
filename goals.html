@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <link rel="stylesheet" href="./styles/menu_nav.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="./styles/goals.css">
+
+    <title>Surance</title>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="home.html" class="brand"><i class='bx bx-wallet icon'></i>SURANCE</a>
+
+		<ul class="side-menu">
+			<li><a href="home.html"><i class='bx bxs-dashboard icon'></i>Inicio</a></li>
+			<li class="divider" data-text="Finanzas">Finanazas</li>
+			<li><a href="incomes.html"><i class='bx bx-money icon'></i> Ingresos</a></li>
+			<li><a href="expenses.html"><i class='bx bx-credit-card icon'></i> Egresos</a></li>
+			<li class="divider" data-text="Ahorros">Ahorros</li>
+			<li><a href="goals.html" class="active"><i class='bx bxs-coin-stack icon'></i> Plan de Ahorro</a></li>
+			<li class="divider" data-text="Configuración">Configuración</li>
+			<li><a href="settings.html"><i class='bx bxs-cog icon'></i> Configuración</a></li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar' ></i>
+            <h2>Plan de Ahorros</h2>
+			<a href="#" class="nav-link">
+				<i class='bx bxs-bell icon' ></i>
+				<span class="badge">69</span>
+			</a>
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="https://www.elcolombiano.com/binrepository/841x562/0c0/0d0/none/11101/UPMB/40305366_40305366_20220713144007.jpg" alt="">
+				<ul class="profile-link">
+					<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Cuenta</a></li>
+					<li><a href="#"><i class='bx bxs-cog' ></i> Configuración</a></li>
+					<li><a href="./index.html"><i class='bx bxs-log-out-circle' ></i> Cerrar Sesión</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+
+        
+        <!-- CONTENIDO DE LA PÁGINA DE PLAN DE AHORRO -->
+        <main>
+
+			<h1 class="title">Tus metas</h1>
+			<ul class="breadcrumbs">
+				<li>Plan de Ahorros</a></li>
+				<li class="divider">/</li>
+				<li><a href="#" class="active">Detalles de tus Metas</a></li>
+				<button id="btn_new_goal">Nueva Meta</button>
+			</ul>
+			
+			<!-- LISTA DE METAS -->
+			<ul>
+				<li>
+					<div class="goal_container" id="goal1">
+
+						<div class="external_container">
+							<div class="internal_container">
+								
+								<p>
+									<strong>Nombre de la meta</strong> <br>
+									<span>Una casita</span>
+								</p>
+								<p>
+									<strong>Descipción de la meta</strong> <br>
+									Pos que quiero ahorrar para una casita!
+								</p>
+								<p>
+									<strong>Lo que te propones</strong> <br>
+									$100.000.000
+								</p>
+								<p>
+									<strong>Lo que llevas hasta el momento</strong> <br>
+									$40.000.000
+								</p>
+
+								<button class="btn_pay_goal">Abonar a tu meta</button>
+								<button class="btn_remove_goal">Eliminar meta</button>
+							</div>
+						</div>
+						
+						<div class="graphic_container">
+							<h2>Progreso de la Meta</h2>
+							<div class="circular-progress" data-value="40">
+								<div class="value-container">0%</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<!-- META REPETIDA POR EJEMPLO -->
+					<div class="goal_container" id="2">
+
+						<div class="external_container">
+							<div class="internal_container">
+								
+								<p>
+									<strong>Nombre de la meta</strong> <br>
+									<span>Un carrito</span>
+								</p>
+								<p>
+									<strong>Descipción de la meta</strong> <br>
+									Pos que quiero ahorrar para un carrito! <br>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, dolores dolor! Similique nemo hic culpa vel odio dignissimos impedit reprehenderit sint, accusantium quia id. Ipsam sapiente aliquid perspiciatis harum sunt.
+								</p>
+								<p>
+									<strong>Lo que te propones</strong> <br>
+									$50.000.000
+								</p>
+								<p>
+									<strong>Lo que llevas hasta el momento</strong> <br>
+									$35.000.000
+								</p>
+								
+								<button class="btn_pay_goal">Abonar a tu meta</button>
+								<button class="btn_remove_goal">Eliminar meta</button>
+							</div>
+						</div>
+						
+						<div class="graphic_container">
+							<h2>Progreso de la Meta</h2>
+							<div class="circular-progress" data-value="70">
+								<div class="value-container">0%</div>
+							</div>
+						</div>
+		
+					</div>
+					<!-- FIN DE LA META REPETIDA POR EJEMPLO -->
+				</li>
+				<li>
+					<!-- META REPETIDA POR EJEMPLO 2 -->
+					<div class="goal_container" id="3">
+
+						<div class="external_container">
+							<div class="internal_container">
+								
+								<p>
+									<strong>Nombre de la meta</strong> <br>
+									<span>Una compañía</span> 
+								</p>
+								<p>
+									<strong>Descipción de la meta</strong> <br>
+									Pos que quiero ahorrar para fundar una compañía!
+								</p>
+								<p>
+									<strong>Lo que te propones</strong> <br>
+									$150.000.000
+								</p>
+								<p>
+									<strong>Lo que llevas hasta el momento</strong> <br>
+									$15.000.000
+								</p>
+								
+								<button class="btn_pay_goal">Abonar a tu meta</button>
+								<button class="btn_remove_goal">Eliminar meta</button>
+							</div>
+						</div>
+						
+						<div class="graphic_container">
+							<h2>Progreso de la Meta</h2>
+							<div class="circular-progress" data-value="10">
+								<div class="value-container">0%</div>
+							</div>
+						</div>
+		
+					</div>
+					<!-- FIN DE LA META REPETIDA POR EJEMPLO 2 -->
+				</li>
+			</ul>			
+			<!-- FIN DE LA LISTA DE METAS -->
+
+		</main>
+        <!-- CONTENIDO DE LA PÁGINA DE PLAN DE AHORRO -->
+
+
+		<!-- MODAL WINDOWS -->
+		
+		<!--CREATE NEW GOAL MODAL-->
+		<div id="create_goal_modal" class="modal hide">
+			<div class="modal-content">
+				<div class="close-bar">
+					<i class='bx bx-x' style='color:#7f5a83'></i>
+				</div>
+				<h2>Crear Meta</h2>
+				<form id="form_create_goal" method="post">
+					<input type="text" id="txtGoalName" placeholder="Nombre">
+					<input type="text" id="txtGoalDes" placeholder="Descripción">
+					<input type="number" id="txtGoalMoney" placeholder="Dinero a Ahorrar">
+					<button type="submit">Crear Meta</button>
+				</form>
+			</div>
+		</div>
+		<!--END CREATE NEW GOAL MODAL-->
+
+
+		<!--PAY GOAL MODAL-->
+		<div id="pay_goal_modal" class="modal hide">
+			<div class="modal-content">
+				<div class="close-bar">
+					<i class='bx bx-x' style='color:#7f5a83'></i>
+				</div>
+				<h2>Abonar a tu meta</h2>
+				<h3>Meta: <span></span></h3>
+				<form id="form_pay_goal" method="post">
+					<input type="number" id="txtGoalMoney" placeholder="Dinero a Abonar">
+					<button type="submit">Abonar a Meta</button>
+				</form>
+			</div>
+		</div>
+		<!--END PAY GOAL MODAL-->
+
+		<!--DELETE MODAL WINDOW-->
+		<div id="delete_goal_modal" class="modal hide">
+			<div class="modal-content">
+				<div class="close-bar">
+					<i class='bx bx-x' style='color:#7f5a83'></i>
+				</div>
+				<h2>¿Quieres eliminar la meta?</h2>
+				<h3>Meta: <span></span></h3>
+				<form id="form_delete_goal" method="post">
+					<button type="submit">Eliminar Meta</button>
+					<button type="submit">Cancelar</button>
+				</form>
+			</div>
+		</div>
+		<!--END DELETE MODAL WINDOW-->
+
+		<!-- END MODAL WINDOWS-->
+
+    </section>
+
+
+    <script src="./js/menu_nav.js"></script>
+	<script src="./js/goals.js"></script>
+</body>
+</html>

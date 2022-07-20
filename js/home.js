@@ -28,7 +28,7 @@ stroke: {
 },
 xaxis: {
   type: 'month',
-  categories: ['Lunes', 'Martes', 'Miércoles', 'jueves', 'viernes', 'sábado', 'domingo']
+  categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
 }
 };
 

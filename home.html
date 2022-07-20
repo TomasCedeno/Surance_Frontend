@@ -14,17 +14,17 @@
 
     <!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand"><i class='bx bx-wallet icon'></i>SURANCE</a>
+		<a href="home.html" class="brand"><i class='bx bx-wallet icon'></i>SURANCE</a>
 
 		<ul class="side-menu">
-			<li><a href="#" class="active"><i class='bx bxs-dashboard icon' ></i>Inicio</a></li>
+			<li><a href="home.html" class="active"><i class='bx bxs-dashboard icon' ></i>Inicio</a></li>
 			<li class="divider" data-text="Finanzas">Finanazas</li>
-			<li><a href="#"><i class='bx bx-money icon' ></i> Ingresos</a></li>
-			<li><a href="#"><i class='bx bx-credit-card icon'></i> Egresos</a></li>
+			<li><a href="incomes.html"><i class='bx bx-money icon'></i> Ingresos</a></li>
+			<li><a href="expenses.html"><i class='bx bx-credit-card icon'></i> Egresos</a></li>
 			<li class="divider" data-text="Ahorros">Ahorros</li>
-			<li><a href="#"><i class='bx bxs-coin-stack icon' ></i> Plan de Ahorro</a></li>
+			<li><a href="goals.html"><i class='bx bxs-coin-stack icon' ></i> Plan de Ahorro</a></li>
 			<li class="divider" data-text="Configuración">Configuración</li>
-			<li><a href="#"><i class='bx bxs-cog icon' ></i> Configuración</a></li>
+			<li><a href="settings.html"><i class='bx bxs-cog icon' ></i> Configuración</a></li>
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
@@ -109,13 +109,63 @@
 			<div class="history">
 				<div class="incomes card">
 					<div class="head">
-						<h3>Historial Ingresos</h3>
+						<h3>Resumen Ingresos</h3>
 					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Valor</th>
+								<th>Descripción</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>$60.000.000</td>
+							<td>Venta de carro</td>
+						</tr>
+						<tr>
+							<td>$100.00</td>
+							<td>Banco</td>
+						</tr>
+						<tr>
+							<td>$100.00</td>
+							<td>Quincena</td>
+						</tr>
+						<tr>
+							<td>$100.00</td>
+							<td>Venta de carro</td>
+						</tr>
+					</table>
 				</div>
 
 				<div class="expenses card">
 					<div class="head">
-						<h3>Historial Egresos</h3>
+						<h3>Resumen Egresos</h3>
+					</div>
+					<div id="history-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Valor</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tr>
+								<td>$60.000.000</td>
+								<td>Compra de carro</td>
+							</tr>
+							<tr>
+								<td>$100.00</td>
+								<td>Prestamo a cliente</td>
+							</tr>
+							<tr>
+								<td>$100.00</td>
+								<td>Servicios</td>
+							</tr>
+							<tr>
+								<td>$100.00</td>
+								<td>Compra de computador</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
