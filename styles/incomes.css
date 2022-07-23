@@ -17,6 +17,7 @@ main .card {
     border-radius: 10px;
     background: var(--light);
     box-shadow: 4px 4px 16px rgba(0, 0, 0, .05);
+    min-height: 40vh;
 }
 
 /*------------------------------- formulario --------------------------------------------*/
@@ -215,11 +216,6 @@ form .button input:hover {
 
 /*       -------------------------- Table -------------------------------         */
 
-#history_cointener {
-    margin: 150px auto;
-    width: 600px;
-}
-
 table {
     background: #a37da7;
     text-align: left;
@@ -310,3 +306,55 @@ main .history_table .card {
     height: 290px;
     padding: 20px;
 }
+
+/* Flter */
+
+.filter-section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.filter-section input {
+    height: 45px;
+    width: 20%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.filter-section h2 {
+    margin-bottom: 20px;
+}
+
+.filter-section form {
+    margin-bottom: 30px;
+}
+
+.filter-section button{
+    height: 45px;
+    width: 15%;
+    margin-left: 280px;
+    color: #fff;
+    outline: none;
+    background-color: #995e9f;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.filter-section button:hover {
+    border: 2px solid #995e9f;
+    background-color: #fff;
+    color: #995e9f;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+/* Flter */

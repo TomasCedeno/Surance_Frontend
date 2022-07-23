@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="./styles/menu_nav.css">
 	<link rel="stylesheet" href="./styles/expenses.css">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="shortcut icon" href="./Images/favicon.ico" type="image/x-icon">
 
 	<title>Surance</title>
 
@@ -28,8 +29,8 @@
 			<li><a href="expenses.html" class="active"><i class='bx bx-credit-card icon'></i> Egresos</a></li>
 			<li class="divider" data-text="Ahorros">Ahorros</li>
 			<li><a href="goals.html"><i class='bx bxs-coin-stack icon'></i> Plan de Ahorro</a></li>
-			<li class="divider" data-text="Configuración">Configuración</li>
-			<li><a href="settings.html"><i class='bx bxs-cog icon'></i> Configuración</a></li>
+			<li class="divider" data-text="Cuenta">Cuenta</li>
+			<li><a href="account.html"><i class='bx bxs-cog icon'></i> Cuenta</a></li>
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
@@ -39,7 +40,7 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu toggle-sidebar'></i>
-			<h2>Ingresos</h2>
+			<h2>Egresos</h2>
 			<a href="#" class="nav-link">
 				<i class='bx bxs-bell icon'></i>
 				<span class="badge">69</span>
@@ -49,15 +50,14 @@
 				<img src="https://www.elcolombiano.com/binrepository/841x562/0c0/0d0/none/11101/UPMB/40305366_40305366_20220713144007.jpg"
 					alt="">
 				<ul class="profile-link">
-					<li><a href="#"><i class='bx bxs-user-circle icon'></i> Cuenta</a></li>
-					<li><a href="#"><i class='bx bxs-cog'></i> Configuración</a></li>
+					<li><a href="./account.html"><i class='bx bxs-user-circle icon'></i> Cuenta</a></li>
 					<li><a href="./index.html"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
 				</ul>
 			</div>
 		</nav>
 		<!-- NAVBAR -->
 
-	
+
 
 		<!--CONTENIDO DE LAS OTRAS PÁGINAS A PARTIR DE AQUÍ-->
 
@@ -73,7 +73,7 @@
 							<div class="register-input">
 								<div class="input-box">
 									<span class="details_input">Valor</span>
-									<input type="text" placeholder="Ingrese el valor" required>
+									<input type="number" placeholder="Ingrese el valor" required>
 								</div>
 								<div class="input-box">
 									<span class="details_input">Fecha</span>
@@ -87,29 +87,29 @@
 											<div class="options-container">
 
 												<div class="option">
-													<input type="radio" class="radio"  name="category" />
+													<input type="radio" class="radio" name="category" />
 													<label for="film">Servicios</label>
 												</div>
 
 												<div class="option">
-													<input type="radio" class="radio"  name="category" />
+													<input type="radio" class="radio" name="category" />
 													<label for="science">Entretenimiento</label>
 												</div>
 
 												<div class="option">
-													<input type="radio" class="radio"  name="category" />
+													<input type="radio" class="radio" name="category" />
 													<label for="art">Transporte</label>
 												</div>
 												<div class="option">
-													<input type="radio" class="radio"  name="category" />
+													<input type="radio" class="radio" name="category" />
 													<label for="art">Alimento</label>
 												</div>
 												<div class="option">
-													<input type="radio" class="radio"  name="category" />
+													<input type="radio" class="radio" name="category" />
 													<label for="art">Deudas</label>
 												</div>
 												<div class="option">
-													<input type="radio" class="radio"  name="category" />
+													<input type="radio" class="radio" name="category" />
 													<label for="art">Otro</label>
 												</div>
 
@@ -154,46 +154,54 @@
 				<div class="expenses card">
 					<div class="head">
 						<h3>Historial Egresos</h3>
-						<div id="history-container">
-							<table>
-								<thead>
+						<div class="filter-section">
+							<form method="post">
+								<h2>Filtrar por</h2>
+								<input type="text" placeholder="Categoría">
+								<input type="number" placeholder="Valor">
+								<input type="text" placeholder="Fecha">
+								<button type="submit">Buscar</button>
+							</form>
+							<div id="history-container">
+								<table>
+									<thead>
+										<tr>
+											<th>Valor</th>
+											<th>Fecha</th>
+											<th>Categoría</th>
+											<th>Descripción</th>
+										</tr>
+									</thead>
 									<tr>
-										<th>Valor</th>
-										<th>Fecha</th>
-										<th>Categoría</th>
-										<th>Descripción</th>
+										<td>$60.000.000</td>
+										<td>15/04/2022</td>
+										<td>Compra</td>
+										<td>Compra de carro</td>
 									</tr>
-								</thead>
-								<tr>
-									<td>$60.000.000</td>
-									<td>15/04/2022</td>
-									<td>Compra</td>
-									<td>Compra de carro</td>
-								</tr>
-								<tr>
-									<td>$100.00</td>
-									<td>15/04/2022</td>
-									<td>Prestamo</td>
-									<td>Prestamo a cliente</td>
-								</tr>
-								<tr>
-									<td>$100.00</td>
-									<td>15/04/2022</td>
-									<td>deuda</td>
-									<td>Servicios</td>
-								</tr>
-								<tr>
-									<td>$100.00</td>
-									<td>15/04/2022</td>
-									<td>Compra</td>
-									<td>Compra de computador</td>
-								</tr>
+									<tr>
+										<td>$100.00</td>
+										<td>15/04/2022</td>
+										<td>Prestamo</td>
+										<td>Prestamo a cliente</td>
+									</tr>
+									<tr>
+										<td>$100.00</td>
+										<td>15/04/2022</td>
+										<td>deuda</td>
+										<td>Servicios</td>
+									</tr>
+									<tr>
+										<td>$100.00</td>
+										<td>15/04/2022</td>
+										<td>Compra</td>
+										<td>Compra de computador</td>
+									</tr>
 
-							</table>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		</main>
 
 		<script src="./js/menu_nav.js"></script>

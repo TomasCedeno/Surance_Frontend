@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./styles/menu_nav.css">
+	<link rel="stylesheet" href="./styles/account.css">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="shortcut icon" href="./Images/favicon.ico" type="image/x-icon">
+
+	<title>Surance</title>
+</head>
+
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="home.html" class="brand"><i class='bx bx-wallet icon'></i>SURANCE</a>
+
+		<ul class="side-menu">
+			<li><a href="home.html"><i class='bx bxs-dashboard icon'></i>Inicio</a></li>
+			<li class="divider" data-text="Finanzas">Finanazas</li>
+			<li><a href="incomes.html"><i class='bx bx-money icon'></i> Ingresos</a></li>
+			<li><a href="expenses.html"><i class='bx bx-credit-card icon'></i> Egresos</a></li>
+			<li class="divider" data-text="Ahorros">Ahorros</li>
+			<li><a href="goals.html"><i class='bx bxs-coin-stack icon'></i> Plan de Ahorro</a></li>
+			<li class="divider" data-text="Cuenta">Cuenta</li>
+			<li><a href="account.html" class="active"><i class='bx bxs-cog icon'></i> Cuenta</a></li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar'></i>
+			<h2>Cuenta</h2>
+			<a href="#" class="nav-link">
+				<i class='bx bxs-bell icon'></i>
+				<span class="badge">69</span>
+			</a>
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="https://www.elcolombiano.com/binrepository/841x562/0c0/0d0/none/11101/UPMB/40305366_40305366_20220713144007.jpg"
+					alt="">
+				<ul class="profile-link">
+					<li><a href="./account.html"><i class='bx bxs-user-circle icon'></i> Cuenta</a></li>
+					<li><a href="./index.html"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!--CONTENIDO DE LAS OTRAS PÁGINAS A PARTIR DE AQUÍ-->
+		<!---->
+		<div class="containers">
+			<div class="up_box">
+				<nav class="nav_containers">
+					<a onclick="tabs(0)" class="tab activo">
+						<i class='bx bxs-edit-alt'></i>
+					</a>
+					<a onclick="tabs(1)" class="tab">
+						<i class='bx bx-lock' ></i>
+					</a>
+
+				</nav>
+			</div>
+
+			<div class="down_box">
+				<div class="personal tabShow activo">
+					<h1 class="titles">Información Personal</h1>
+
+					<h2>Nombre Completo</h2>
+					<input type="text" class="input" value="Juan Tomas Bermudez">
+
+					<h2>Username</h2>
+					<input type="text" class="input" value="JuanMa03">
+
+					<h2>Fecha de nacimiento</h2>
+					<input type="text" class="input" value="15/05/2000">
+
+					<h2>País</h2>
+					<input type="text" class="input" value="Colombia">
+					
+					<h2>Correo</h2>
+					<input type="text" class="input" value="jtbermudez04@gmail.com">
+
+					<button class="btn">Actualizar</button>
+
+					<div class="perfil-usuario-avatar">
+						<img src="https://www.elcolombiano.com/binrepository/841x562/0c0/0d0/none/11101/UPMB/40305366_40305366_20220713144007.jpg"
+					alt="">
+						<button type="button" class="boton-avatar">
+							<i class='bx bx-photo-album'></i>
+						</button>
+					</div>
+
+				</div>
+				<div class="password tabShow">
+					<h1 class="titles_2">Cambiar Contraseña</h1>
+
+					<h2>Contraseña anterior</h2>
+					<input type="password" class="input" value="contraseña_en_*_">
+
+					<h2>Contraseña nueva</h2>
+					<input type="password" class="input" value="contraseña_en_*_">
+
+					<h2>Confirmar contraseña nueva</h2>
+					<input type="password" class="input" value="contraseña_en_*_">
+
+					<button class="btn">Actualizar</button>
+				</div>
+			</div>
+		</div> 
+	
+	</section>
+
+
+	<script src="./js/menu_nav.js"></script>
+	<script src="./js/account.js"></script>
+
+	
+</body>
+
+</html>
