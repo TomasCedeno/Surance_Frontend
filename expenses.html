@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" href="./Images/favicon.ico" type="image/x-icon">
 
 	<title>Surance</title>
-
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
@@ -67,83 +67,48 @@
 				<!-- Register expense -->
 
 				<div class="expenses_page card">
-					<div class="container">
-						<div class="title">Registro de Egresos</div>
-						<form action="#">
-							<div class="register-input">
-								<div class="input-box">
-									<span class="details_input">Valor</span>
-									<input type="number" placeholder="Ingrese el valor" required>
-								</div>
-								<div class="input-box">
-									<span class="details_input">Fecha</span>
-									<input type="text" placeholder="Ingrese DD/MM/AA" required>
-								</div>
-								<div class="input-box">
-									<span class="details_input">Categoria</span>
 
-									<div class="container_category">
-										<div class="select-box">
-											<div class="options-container">
+					<div class="title">Registro de Egresos</div>
+					<form class="form_register" action="#">
 
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="film">Servicios</label>
-												</div>
 
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="science">Entretenimiento</label>
-												</div>
+						<!--<span class="details_input">Valor</span>-->
 
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="art">Transporte</label>
-												</div>
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="art">Alimento</label>
-												</div>
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="art">Deudas</label>
-												</div>
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="art">Otro</label>
-												</div>
+						<div class="position_register">
+							<span class="details_input ">Valor</span>
+							<input type="number" placeholder="Ingrese el valor" max="999999999999999" maxlength="5"
+								required>
+						</div>
 
-											</div>
-											<div class="selected">
-												Seleccione
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="input-box">
-									<span class="details_input">Descripción</span>
-									<input type="text" placeholder="Opcional">
-								</div>
-							</div>
-							<div class="button">
-								<input type="submit" value="Registrar">
-							</div>
-						</form>
-					</div>
+						<div class="position_register">
+							<span class="details_input">Fecha</span>
+							<input type="date" placeholder="Ingrese DD/MM/AA" required>
+						</div>
+
+						<div class="position_register">
+							<span class="details_input">Categoria</span>
+							<input type="text" placeholder="Ingrese una Categoria" maxlength="30" required>
+						</div>
+
+						<div class="position_register">
+							<span class="details_input">Descripción</span>
+							<input type="text" placeholder="Opcional" maxlength="30">
+						</div>
+
+
+						<button class="button_register" type="submit">Registrar</button>
+
+
+					</form>
+
 				</div>
 
 				<!-- Graphics -->
 
 				<div class="right-section">
-
 					<div class="graphic_history card">
-						<div class="head">
-							<div>
-								<h3>Grafico de Egresos</h3>
-								<div id="columnchart_material"></div>
-							</div>
-						</div>
-
+						<h3>Grafico de Egresos</h3>
+						<div id="columnchart_material"></div>
 					</div>
 				</div>
 			</div>
@@ -152,57 +117,318 @@
 
 			<div class="history_table">
 				<div class="expenses card">
-					<div class="head">
-						<h3>Historial Egresos</h3>
-						<div class="filter-section">
-							<form method="post">
-								<h2>Filtrar por</h2>
-								<input type="text" placeholder="Categoría">
-								<input type="number" placeholder="Valor">
-								<input type="text" placeholder="Fecha">
-								<button type="submit">Buscar</button>
-							</form>
-							<div id="history-container">
-								<table>
-									<thead>
-										<tr>
-											<th>Valor</th>
-											<th>Fecha</th>
-											<th>Categoría</th>
-											<th>Descripción</th>
-										</tr>
-									</thead>
-									<tr>
-										<td>$60.000.000</td>
-										<td>15/04/2022</td>
-										<td>Compra</td>
-										<td>Compra de carro</td>
-									</tr>
-									<tr>
-										<td>$100.00</td>
-										<td>15/04/2022</td>
-										<td>Prestamo</td>
-										<td>Prestamo a cliente</td>
-									</tr>
-									<tr>
-										<td>$100.00</td>
-										<td>15/04/2022</td>
-										<td>deuda</td>
-										<td>Servicios</td>
-									</tr>
-									<tr>
-										<td>$100.00</td>
-										<td>15/04/2022</td>
-										<td>Compra</td>
-										<td>Compra de computador</td>
-									</tr>
 
-								</table>
-							</div>
-						</div>
+					<h1 id="title_historial">Historial Egresos</h1>
+					<div class="filter-section">
+
+
+						<table class="table-info table" id="table_expense">
+							<thead>
+								<tr id>
+									<th>Valor</th>
+									<th>Fecha</th>
+									<th>Categoría</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>20.000</td>
+									<td>15/04/2022</td>
+									<td>Alimento</td>
+									<td>Zanahoria y papa </td>
+								</tr>
+								<tr>
+									<td>100.000</td>
+									<td>15/04/2022</td>
+									<td>Prestamo</td>
+									<td>Prestamo a cliente</td>
+								</tr>
+								<tr>
+									<td>100.000</td>
+									<td>15/04/2022</td>
+									<td>Prestamo</td>
+									<td>Prestamo a cliente</td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Venta</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+								<tr>
+									<td>60.000.000</td>
+									<td>15/04/2022</td>
+									<td>Compra</td>
+									<td>Compra de carro </td>
+								</tr>
+							</tbody>
+
+						</table>
 					</div>
 				</div>
+			</div>
 		</main>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
 
 		<script src="./js/menu_nav.js"></script>
 		<script src="./js/expenses.js"></script>

@@ -12,6 +12,7 @@
 
 	<title>Surance</title>
 
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
@@ -64,139 +65,92 @@
 		<main>
 			<div class="data">
 
-				<!-- Register income -->
-				<div class="income_page card">
-					<div class="container">
-						<div class="title">Registro de Ingresos</div>
-						<form action="#">
-							<div class="register-input">
-								<div class="input-box">
-									<span class="details_input">Valor</span>
-									<input type="number" placeholder="Ingrese el valor" required>
-								</div>
-								<div class="input-box">
-									<span class="details_input">Fecha</span>
-									<input type="text" placeholder="Ingrese DD/MM/AA" required>
-								</div>
-								<div class="input-box">
-									<span class="details_input">Categoria</span>
-									<div class="container_category">
-										<div class="select-box">
-											<div class="options-container">
+				<!-- Register expense -->
 
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="film">Venta</label>
-												</div>
+				<div class="incomes_page card">
 
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="science">Sueldo</label>
-												</div>
-
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="art">Prestamo</label>
-												</div>
-												<div class="option">
-													<input type="radio" class="radio" name="category" />
-													<label for="art">Otro</label>
-												</div>
-											</div>
-											<div class="selected">
-												Seleccione
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="input-box">
-									<span class="details_input">Descripción</span>
-									<input type="text" placeholder="Opcional">
-								</div>
-							</div>
-							<div class="button">
-								<input type="submit" value="Registrar">
-							</div>
-						</form>
-					</div>
-				</div>
+					<div class="title">Registro de Egresos</div>
+					<form class="form_register" action="#">
 
 
-				<!-- graphic -->
-				<div class="right-section">
+						<!--<span class="details_input">Valor</span>-->
 
-					<div class="graphic_history card">
-						<div class="head">
-							<div>
-								<h3>Grafico de Ingresos</h3>
-								<div id="columnchart_material"></div>
-							</div>
+						<div class="position_register">
+							<span class="details_input ">Valor</span>
+							<input type="number" placeholder="Ingrese el valor" max="999999999999999" maxlength="5"
+								required>
 						</div>
 
+						<div class="position_register">
+							<span class="details_input">Fecha</span>
+							<input type="date" placeholder="Ingrese DD/MM/AA" required>
+						</div>
+
+						<div class="position_register">
+							<span class="details_input">Categoria</span>
+							<input type="text" placeholder="Ingrese una Categoria" maxlength="30" required>
+						</div>
+
+						<div class="position_register">
+							<span class="details_input">Descripción</span>
+							<input type="text" placeholder="Opcional" maxlength="30">
+						</div>
+
+
+						<button class="button_register" type="submit">Registrar</button>
+
+
+					</form>
+
+				</div>
+
+				<!-- Graphics -->
+
+				<div class="right-section">
+					<div class="graphic_history card">
+						<h3>Grafico de Ingresos</h3>
+						<div id="columnchart_material"></div>
 					</div>
 				</div>
 			</div>
 
-
-			<!-- table income -->
+			<!-- table incomes -->
 
 			<div class="history_table">
 				<div class="incomes card">
-					<div class="head">
-						<h3>Historial Ingresos</h3>
-						<div class="filter-section">
-							<form method="post">
-								<h2>Filtrar por</h2>
-								<input type="text" placeholder="Categoría">
-								<input type="number" placeholder="Valor">
-								<input type="text" placeholder="Fecha">
-								<button type="submit">Buscar</button>
-							</form>
-							<div id="history-container">
-								<table>
-									<thead>
-										<tr>
-											<th>Valor</th>
-											<th>Fecha</th>
-											<th>Categoría</th>
-											<th>Descripción</th>
-										</tr>
-									</thead>
-									<tr>
-										<td>$60.000.000</td>
-										<td>15/04/2022</td>
-										<td>Venta</td>
-										<td>Venta de carro</td>
-									</tr>
-									<tr>
-										<td>$100.00</td>
-										<td>15/04/2022</td>
-										<td>Prestamo</td>
-										<td>Banco</td>
-									</tr>
-									<tr>
-										<td>$100.00</td>
-										<td>15/04/2022</td>
-										<td>Salario</td>
-										<td>Quincena</td>
-									</tr>
-									<tr>
-										<td>$100.00</td>
-										<td>15/04/2022</td>
-										<td>Venta</td>
-										<td>Venta de carro</td>
-									</tr>
 
-								</table>
-							</div>
-						</div>
+					<h1 id="title_historial">Historial Ingresos</h1>
+					<div class="filter-section">
+
+
+						<table class="table-info table" id="table_income">
+							<thead>
+								<tr id>
+									<th>Valor</th>
+									<th>Fecha</th>
+									<th>Categoría</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+
+						</table>
 					</div>
+				</div>
+			</div>
 		</main>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
 
 		<script src="./js/menu_nav.js"></script>
 		<script src="./js/incomes.js"></script>
 
-
+	</section>
 </body>
 
 </html>
