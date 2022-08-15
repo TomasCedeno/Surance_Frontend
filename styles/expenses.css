@@ -176,7 +176,20 @@ tr:nth-child(odd) {
 .dataTable {
     width: 50px;
 }
-
+td button{  
+    justify-content: center;
+    display: flex;
+    padding-top: 1px;
+    width: 74px;
+    height: 22px;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    background: #7b71e6;
+    cursor: pointer;
+    font-weight: 500;
+}
 .even td {
     background: #a37da7;
 

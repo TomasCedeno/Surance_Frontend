@@ -9,15 +9,17 @@ $(document).ready(function () {
 
   var table = $('#table_income').DataTable({
 
+    "columnDefs": [
+      { "width": "7%", "targets": 4 }
+    ],
     orderCellsTop: true,
-
     fixedHeader: true,
     initComplete: function () {
       var api = this.api();
 
 
       api
-        .columns()
+        .columns([0,1,2,3])
         .eq(0)
         .each(function (colIdx) {
 
@@ -81,6 +83,12 @@ $(document).ready(function () {
 
 });
 
+//  -------------- Eliminar ---------------------
+
+$(document).on('click',".btn_row_delete", function(e)
+{
+  var r = $(this).closest('tr').remove();
+});
 
 //  -------------- Graficas ---------------------
 

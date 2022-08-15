@@ -1,3 +1,4 @@
+const BACKEND_URL = 'http://localhost:8000'
 
 // filter table
 
@@ -8,16 +9,19 @@ $(document).ready(function () {
     .appendTo('#table_expense thead');
 
   var table = $('#table_expense').DataTable({
-
+    "columnDefs": [
+      { "width": "7%", "targets": 4 }
+    ],
     orderCellsTop: true,
     responsive:true,
     fixedHeader: true,
+
     initComplete: function () {
       var api = this.api();
-
+      
 
       api
-        .columns()
+        .columns([0,1,2,3])
         .eq(0)
         .each(function (colIdx) {
 
@@ -79,7 +83,12 @@ $(document).ready(function () {
 
 });
 
+//  -------------- Eliminar ---------------------
 
+$(document).on('click',".btn_row_delete", function(e)
+{
+  var r = $(this).closest('tr').remove();
+});
 //  -------------- Graficas ---------------------
 
 
