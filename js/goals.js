@@ -166,7 +166,12 @@ function insertGoal(goal) {
 async function loadData() {
     goals = await getGoals()
 
-    goalsDiv.innerHTML = ''
+    goalsDiv.innerHTML = (goals.length>0)?'':`
+	<h1 style="font-size: 40px; padding: 120px">
+	Aún no tienes metas ...
+	</h1>
+	`
+	
     goals.forEach((goal) => {
         insertGoal(goal)
     })
