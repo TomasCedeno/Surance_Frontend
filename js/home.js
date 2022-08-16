@@ -70,7 +70,31 @@ function insertIncome(income) {
 	<td>${income.value}</td>
 	<td>${income.description}</td>
 	`
-	incomesTable.appendChild(li)
+	incomesTable.appendChild(tr)
+}
+//#endregion
+
+//#region GET GOALS
+async function getGoals() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/goals/`)
+		const goals = await response.json()
+		return goals
+	} catch (error) {
+		console.error(error)
+	}
+}
+//#endregion
+
+//#region GET INCOMES
+async function getIncomes() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/incomes/`)
+		const incomes = await response.json()
+		return incomes.slice(0, 5)
+	} catch (error) {
+		console.error(error)
+	}
 }
 //#endregion
 
@@ -90,30 +114,6 @@ async function loadData() {
 	})
 
 	loadProgress()
-}
-//#endregion
-
-//#region GET GOALS
-async function getGoals() {
-	try {
-		const response = await fetch(`${BACKEND_URL}/goals/`)
-		const goals = await response.json()
-		return goals
-	} catch (error) {
-		console.error(error)
-	}
-}
-//#endregion
-
-//#region GET INCOMES
-async function getIncomes() {
-	try {
-		const response = await fetch(`${BACKEND_URL}/goals/`)
-		const incomes = await response.json()
-		return incomes
-	} catch (error) {
-		console.error(error)
-	}
 }
 //#endregion
 
