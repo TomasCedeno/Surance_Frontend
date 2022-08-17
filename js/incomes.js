@@ -1,7 +1,9 @@
 const BACKEND_URL = 'http://localhost:8000'
 const userId = localStorage.getItem('userId')
 const tableDiv = document.querySelector('#tbody_income')
+let chart
 headTable()
+createGraphic()
 loadData()
 
 //#region LOGOUT SECTION
@@ -26,7 +28,7 @@ async function loadData() {
 		insertGoal(formIncome)
 	})
 	loadTable()
-	loadGraphic()
+	chart.updateOptions(await getGraphicData())
 }
 // filter table
 
@@ -128,8 +130,12 @@ function destroyTable() {
 
 
 //  -------------- Graficas ---------------------
+async function createGraphic(){
+	chart = new ApexCharts(document.querySelector("#columnchart_material"), await getGraphicData());
+	chart.render();
+}
 
-async function loadGraphic() {
+async function getGraphicData() {
 	const lblMonths = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
 	'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
    
@@ -218,8 +224,7 @@ async function loadGraphic() {
 		}
 	};
 
-	var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
-	chart.render();
+	return options
 }
 
 // conexion ---------------------------------------------------------------
