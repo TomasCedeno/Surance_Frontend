@@ -2,6 +2,20 @@ const BACKEND_URL = 'http://localhost:8000'
 const goalsBox = document.querySelector('.goals ul')
 const incomesTable = document.querySelector('.incomes tbody')
 const expensesTable = document.querySelector('.expenses tbody')
+const userId = localStorage.getItem('userId')
+
+if(!userId){
+	logOut()
+}
+
+document.querySelector('#btnLogout').addEventListener('click', logOut)
+
+function logOut(){
+	localStorage.clear()
+	alert('Se cerrará tu sesión')
+	location.replace('index.html')
+}
+
 
 //#region  LOAD PROGRESSBAR
 function loadProgress(){
@@ -98,10 +112,27 @@ async function getIncomes() {
 }
 //#endregion
 
+//#region GET USER
+async function getUser() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/user/${userId}`)
+		const user = await response.json()
+		return user
+	} catch (error) {
+		console.error(error)
+	}
+}
+//#endregion
+
 //#region LOAD DATA
 async function loadData() {
+	user = await getUser()
 	goals = await getGoals()
 	incomes = await getIncomes()
+
+	document.querySelector('#userName').innerHTML = `Hola ${user.userName}`
+
+	document.querySelector('#balance').innerHTML = `$ ${user.balance}`
 
     goalsBox.innerHTML = (goals.length>0)?'':'<h2>Aún no tienes metas</h2>'
     goals.forEach((goal) => {
