@@ -17,7 +17,7 @@ tab.forEach( ( cadaLi , i )=>{
 //#endregion
 
 
-const BACKEND_URL = 'http://localhost:8000'
+const BACKEND_URL = 'http://surance-db.herokuapp.com'
 const userId = localStorage.getItem('userId')
 
 if(!userId){

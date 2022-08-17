@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://localhost:8000'
+const BACKEND_URL = 'http://surance-db.herokuapp.com'
 document.getElementById("btn_register").addEventListener("click", loadRegister);
 document.getElementById("btn_login").addEventListener("click", loadLogin);
 window.addEventListener("resize", resizing);

@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://localhost:8000'
+const BACKEND_URL = 'http://surance-db.herokuapp.com'
 const userId = localStorage.getItem('userId')
 const goalsDiv = document.querySelector('#goals')
 let selectedGoalId
