@@ -4,13 +4,13 @@ const incomesTable = document.querySelector('.incomes tbody')
 const expensesTable = document.querySelector('.expenses tbody')
 const userId = localStorage.getItem('userId')
 
-if(!userId){
+if (!userId) {
 	logOut()
 }
 
 document.querySelector('#btnLogout').addEventListener('click', logOut)
 
-function logOut(){
+function logOut() {
 	localStorage.clear()
 	alert('Se cerrará tu sesión')
 	location.replace('index.html')
@@ -18,7 +18,7 @@ function logOut(){
 
 
 //#region  LOAD PROGRESSBAR
-function loadProgress(){
+function loadProgress() {
 	const allProgress = document.querySelectorAll('main .goals li .progress');
 
 	allProgress.forEach(item => {
@@ -28,42 +28,118 @@ function loadProgress(){
 //#endregion
 
 
-//#region  APEXCHART CONFIGURATION
-var fakeData = {
-	series: [{
-		name: 'Ingresos',
-		data: [35000, 20000, 12000, 15000, 45000, 30000, 22000],
-		color: '#48ACF0',
-	}, {
-		name: 'Egresos',
-		data: [15000, 30000, 22000, 10000, 20000, 17000, 28000],
-		color: '#7F5A83',
-	}],
-	chart: {
-		height: 350,
-		type: 'area'
-	},
-	dataLabels: {
-		enabled: false
-	},
-	stroke: {
-		curve: 'smooth'
-	},
-	xaxis: {
-		type: 'month',
-		categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
-	}
-};
+//#region  LOAD GRAPHIC: APEXCHART CONFIGURATION
+async function loadGraphic() {
 
-var chart = new ApexCharts(document.querySelector('#chart'), fakeData);
-chart.render();
+
+	let monthlyIncomes = await getMonthlyIncomes()
+	let monthlyExpenses = await getMonthlyExpenses()
+
+	let incomes = []
+	let expenses = []
+	let totalIncomes = 0
+	let totalExpenses = 0
+
+	monthlyIncomes.map(i => {
+		incomes.push(i.total)
+		totalIncomes += i.total
+	})
+
+	monthlyExpenses.map(e => {
+		expenses.push(e.total)
+		totalExpenses += e.total
+	})
+
+
+	var options1 = {
+		series: [{
+			data: incomes
+		}],
+		chart: {
+			type: 'area',
+			height: 250,
+			sparkline: {
+				enabled: true
+			},
+		},
+		stroke: {
+			curve: 'straight'
+		},
+		fill: {
+			opacity: 0.3,
+		},
+		yaxis: {
+			min: 0
+		},
+		colors: ['#48ACF0'],
+		title: {
+			text: `$ ${totalIncomes}`,
+			offsetX: 0,
+			style: {
+				fontSize: '24px',
+				color: '#48ACF0'
+			}
+		},
+		subtitle: {
+			text: 'Ingresos',
+			offsetX: 0,
+			style: {
+				fontSize: '16px',
+			}
+		}
+	};
+
+	var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+	chart1.render();
+
+	var options2 = {
+		series: [{
+			data: expenses
+		}],
+		chart: {
+			type: 'area',
+			height: 250,
+			sparkline: {
+				enabled: true
+			},
+		},
+		stroke: {
+			curve: 'straight'
+		},
+		fill: {
+			opacity: 0.3,
+		},
+		yaxis: {
+			min: 0
+		},
+		colors: ['#7F5A83'],
+		title: {
+			text: `$ ${totalExpenses}`,
+			offsetX: 0,
+			style: {
+				fontSize: '24px',
+				color: '#7F5A83'
+			}
+		},
+		subtitle: {
+			text: 'Egresos',
+			offsetX: 0,
+			style: {
+				fontSize: '16px',
+			}
+		}
+	};
+
+	var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+	chart2.render();
+}
 //#endregion
 
 
 //#region INSERT GOAL
 function insertGoal(goal) {
 	let li = document.createElement('li')
-	let progress = Math.floor((goal.savedMoney/goal.goalMoney)*100)
+	let progress = Math.floor((goal.savedMoney / goal.goalMoney) * 100)
 
 	li.innerHTML = `
 	<li>
@@ -159,10 +235,10 @@ async function loadData() {
 
 	document.querySelector('#balance').innerHTML = `$ ${user.balance}`
 
-    goalsBox.innerHTML = (goals.length>0)?'':'<h2>Aún no tienes metas</h2>'
-    goals.forEach((goal) => {
-        insertGoal(goal)
-    })
+	goalsBox.innerHTML = (goals.length > 0) ? '' : '<h2>Aún no tienes metas</h2>'
+	goals.forEach((goal) => {
+		insertGoal(goal)
+	})
 
 	incomesTable.innerHTML = ''
 	incomes.forEach((income) => {
@@ -175,6 +251,31 @@ async function loadData() {
 	})
 
 	loadProgress()
+	loadGraphic()
+}
+//#endregion
+
+//#region GET MONTHLY INCOMES
+async function getMonthlyIncomes() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/incomes/monthly/${userId}`)
+		const monthlyIncomes = await response.json()
+		return monthlyIncomes.reverse()
+	} catch (error) {
+		console.error(error)
+	}
+}
+//#endregion
+
+//#region GET MONTHLY EXPENSES
+async function getMonthlyExpenses() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/expenses/monthly/${userId}`)
+		const monthlyExpenses = await response.json()
+		return monthlyExpenses.reverse()
+	} catch (error) {
+		console.error(error)
+	}
 }
 //#endregion
 

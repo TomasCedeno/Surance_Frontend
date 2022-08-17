@@ -97,9 +97,15 @@ main .card .head h3 {
 	font-weight: 600;
 }
 
+.chart-container {
+	display: flex;
+	flex-direction: row;
+}
+
 main .summary .chart {
-	width: 100%;
-	max-width: 100%;
+	width: 50%;
+	max-width: 50%;
+	margin: 25px 5px 0 5px;
 	overflow-x: auto;
 	scrollbar-width: none;
 }
