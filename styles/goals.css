@@ -175,6 +175,7 @@ body.modal-open {
     overflow: hidden;
     position: fixed;
     width: 100%;
+    min-height: 100vh;
 }
 
 .modal {
