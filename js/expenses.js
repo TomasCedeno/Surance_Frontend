@@ -27,6 +27,7 @@ async function loadData() {
 		insertGoal(formExpense)
 	})
 	loadTable()
+	loadGraphic()
 }
 
 // filter table
@@ -134,85 +135,100 @@ function destroyTable() {
 
 
 //  -------------- Graficas ---------------------
+async function loadGraphic(){
 
+	const lblMonths = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+	'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+   
+	let monthlyExpenses = await getMonthlyExpenses()
 
-var options = {
-	series: [{
-		name: 'Egresos',
-		data: [2500000, 2000000, 1950000, 3000000, 1950000, 2500000]
-	}],
-	chart: {
-		height: 260,
-		type: 'bar',
-	},
-	plotOptions: {
-		bar: {
-			borderRadius: 10,
-			dataLabels: {
-				position: 'top', // top, center, bottom
-			},
-		}
-	},
-	dataLabels: {
-		enabled: true,
-		offsetY: -14,
-		style: {
-			fontSize: '11px',
-			colors: ["#304758"]
-		}
-	},
+	let totalExpenses = []
+	let months = []
 
-	xaxis: {
-		categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-		position: 'top',
-		axisBorder: {
-			show: false
+	monthlyExpenses.map(i => {
+		totalExpenses.push(i.total)
+		months.push(lblMonths[i.month])
+	})
+
+	var options = {
+		series: [{
+			name: 'Egresos',
+			data: totalExpenses
+		}],
+		chart: {
+			height: 260,
+			type: 'bar',
 		},
-		axisTicks: {
-			show: false
-		},
-		crosshairs: {
-			fill: {
-				type: 'gradient',
-				gradient: {
-					colorFrom: '#D8E3F0',
-					colorTo: '#BED1E6',
-					stops: [0, 100],
-					opacityFrom: 0.4,
-					opacityTo: 0.5,
-				}
+		plotOptions: {
+			bar: {
+				borderRadius: 10,
+				dataLabels: {
+					position: 'top', // top, center, bottom
+				},
 			}
 		},
-		tooltip: {
+		dataLabels: {
 			enabled: true,
-		}
-	},
-	yaxis: {
-		axisBorder: {
-			show: false
+			offsetY: -14,
+			style: {
+				fontSize: '11px',
+				colors: ["#304758"]
+			}
 		},
-		axisTicks: {
-			show: false,
+	
+		xaxis: {
+			categories: months,
+			position: 'top',
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false
+			},
+			crosshairs: {
+				fill: {
+					type: 'gradient',
+					gradient: {
+						colorFrom: '#D8E3F0',
+						colorTo: '#BED1E6',
+						stops: [0, 100],
+						opacityFrom: 0.4,
+						opacityTo: 0.5,
+					}
+				}
+			},
+			tooltip: {
+				enabled: true,
+			}
 		},
-		labels: {
-			show: false,
-
+		yaxis: {
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false,
+			},
+			labels: {
+				show: false,
+	
+			}
+	
+		},
+		title: {
+			text: 'Egresos Mensuales',
+			floating: true,
+			offsetY: 240,
+			align: 'center',
+			style: {
+				color: '#444'
+			}
 		}
+	};
+	
+	var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
+	chart.render();
+}
 
-	},
-	title: {
-		text: 'Egresos Mensuales',
-		floating: true,
-		offsetY: 240,
-		align: 'center',
-		style: {
-			color: '#444'
-		}
-	}
-};
-
-var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
-chart.render();
 
 // conexion ---------------------------------------------------------------
 // conexion ---------------------------------------------------------------
@@ -273,6 +289,17 @@ async function getExpenses() {
 	} catch (error) {
 		console.error(error)
 	}
+}
+
+async function getMonthlyExpenses() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/expenses/monthly/${userId}`)
+		const monthlyExpenses = await response.json()
+		return monthlyExpenses.slice(0, 6).reverse()
+	} catch (error) {
+		console.error(error)
+	}
+
 }
 
 //  -------------- delete ---------------------

@@ -4,7 +4,6 @@ const tableDiv = document.querySelector('#tbody_income')
 headTable()
 loadData()
 
-
 //#region LOGOUT SECTION
 if (!userId) {
 	logOut()
@@ -27,6 +26,7 @@ async function loadData() {
 		insertGoal(formIncome)
 	})
 	loadTable()
+	loadGraphic()
 }
 // filter table
 
@@ -125,86 +125,102 @@ function destroyTable() {
 	table.clear()
 	table.destroy();
 }
+
+
 //  -------------- Graficas ---------------------
 
+async function loadGraphic() {
+	const lblMonths = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+	'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+   
+	let monthlyIncomes = await getMonthlyIncomes()
 
-var options = {
-	series: [{
-		name: 'Ingresos',
-		data: [2500000, 2000000, 1950000, 3000000, 1950000, 2500000]
-	}],
-	chart: {
-		height: 260,
-		type: 'bar',
-	},
-	plotOptions: {
-		bar: {
-			borderRadius: 10,
-			dataLabels: {
-				position: 'top', // top, center, bottom
-			},
-		}
-	},
-	dataLabels: {
-		enabled: true,
-		offsetY: -14,
-		style: {
-			fontSize: '11px',
-			colors: ["#304758"]
-		}
-	},
+	let totalIncomes = []
+	let months = []
 
-	xaxis: {
-		categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-		position: 'top',
-		axisBorder: {
-			show: false
+	monthlyIncomes.map(i => {
+		totalIncomes.push(i.total)
+		months.push(lblMonths[i.month])
+	})
+
+	var options = {
+		series: [{
+			name: 'Ingresos',
+			data: totalIncomes
+		}],
+		chart: {
+			height: 260,
+			type: 'bar',
 		},
-		axisTicks: {
-			show: false
-		},
-		crosshairs: {
-			fill: {
-				type: 'gradient',
-				gradient: {
-					colorFrom: '#D8E3F0',
-					colorTo: '#BED1E6',
-					stops: [0, 100],
-					opacityFrom: 0.4,
-					opacityTo: 0.5,
-				}
+		plotOptions: {
+			bar: {
+				borderRadius: 10,
+				dataLabels: {
+					position: 'top', // top, center, bottom
+				},
 			}
 		},
-		tooltip: {
+		dataLabels: {
 			enabled: true,
-		}
-	},
-	yaxis: {
-		axisBorder: {
-			show: false
+			offsetY: -14,
+			style: {
+				fontSize: '11px',
+				colors: ["#304758"]
+			}
 		},
-		axisTicks: {
-			show: false,
+
+		xaxis: {
+			categories: months,
+			position: 'top',
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false
+			},
+			crosshairs: {
+				fill: {
+					type: 'gradient',
+					gradient: {
+						colorFrom: '#D8E3F0',
+						colorTo: '#BED1E6',
+						stops: [0, 100],
+						opacityFrom: 0.4,
+						opacityTo: 0.5,
+					}
+				}
+			},
+			tooltip: {
+				enabled: true,
+			}
 		},
-		labels: {
-			show: false,
+		yaxis: {
+			axisBorder: {
+				show: false
+			},
+			axisTicks: {
+				show: false,
+			},
+			labels: {
+				show: false,
 
+			}
+
+		},
+		title: {
+			text: 'Ingresos Mensuales',
+			floating: true,
+			offsetY: 240,
+			align: 'center',
+			style: {
+				color: '#444'
+			}
 		}
+	};
 
-	},
-	title: {
-		text: 'Ingresos Mensuales',
-		floating: true,
-		offsetY: 240,
-		align: 'center',
-		style: {
-			color: '#444'
-		}
-	}
-};
-
-var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
-chart.render();
+	var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
+	chart.render();
+}
 
 // conexion ---------------------------------------------------------------
 // conexion ---------------------------------------------------------------
@@ -227,7 +243,6 @@ document.querySelector('#form_register').addEventListener('submit', async (event
 	event.target.reset()
 	destroyTable()
 	loadData()
-
 })
 
 async function sendJSON(formIncome) {
@@ -262,6 +277,17 @@ async function getIncomes() {
 		const response = await fetch(`${BACKEND_URL}/incomes/${userId}`)
 		const incomesBack = await response.json()
 		return incomesBack
+	} catch (error) {
+		console.error(error)
+	}
+
+}
+
+async function getMonthlyIncomes() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/incomes/monthly/${userId}`)
+		const monthlyIncomes = await response.json()
+		return monthlyIncomes.slice(0, 6).reverse()
 	} catch (error) {
 		console.error(error)
 	}
