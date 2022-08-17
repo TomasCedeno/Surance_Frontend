@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://surance-db.herokuapp.com'
+const BACKEND_URL = 'https://surance-db.herokuapp.com'
 const goalsBox = document.querySelector('.goals ul')
 const incomesTable = document.querySelector('.incomes tbody')
 const expensesTable = document.querySelector('.expenses tbody')

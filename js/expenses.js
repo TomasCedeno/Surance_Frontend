@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://surance-db.herokuapp.com'
+const BACKEND_URL = 'https://surance-db.herokuapp.com'
 const userId = localStorage.getItem('userId')
 const tableDiv = document.querySelector('#tbody_expense')
 let chart
