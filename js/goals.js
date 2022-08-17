@@ -1,6 +1,23 @@
-let selectedGoalId
-const goalsDiv = document.querySelector('#goals')
 const BACKEND_URL = 'http://localhost:8000'
+const userId = localStorage.getItem('userId')
+const goalsDiv = document.querySelector('#goals')
+let selectedGoalId
+
+
+//#region LOGOUT SECTION
+if(!userId){
+	logOut()
+}
+
+document.querySelector('#btnLogout').addEventListener('click', logOut)
+
+function logOut(){
+	localStorage.clear()
+	alert('Se cerrará tu sesión')
+	location.replace('index.html')
+}
+//#endregion
+
 
 //#region LOAD PROGRESSBAR
 function loadProgress(){
@@ -39,6 +56,7 @@ document.querySelector('#form_create_goal').addEventListener('submit', async (ev
 	event.preventDefault();
 
 	const goal = {
+		user: userId,
 		name: document.querySelector('#txtGoalName').value,
 		goalMoney: document.querySelector('#txtGoalMoney').value,
 		description: document.querySelector('#txtGoalDes').value,
@@ -191,7 +209,7 @@ async function loadData() {
 //#region GET GOALS
 async function getGoals() {
 	try {
-		const response = await fetch(`${BACKEND_URL}/goals/`)
+		const response = await fetch(`${BACKEND_URL}/goals/${userId}`)
 		const goals = await response.json()
 		return goals
 	} catch (error) {

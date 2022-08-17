@@ -1,7 +1,24 @@
 const BACKEND_URL = 'http://localhost:8000'
+const userId = localStorage.getItem('userId')
 const tableDiv = document.querySelector('#tbody_income')
 headTable()
 loadData()
+
+
+//#region LOGOUT SECTION
+if(!userId){
+	logOut()
+}
+
+document.querySelector('#btnLogout').addEventListener('click', logOut)
+
+function logOut(){
+	localStorage.clear()
+	alert('Se cerrará tu sesión')
+	location.replace('index.html')
+}
+//#endregion
+
 
 async function loadData() {
   incomesBack = await getIncomes()
@@ -198,7 +215,8 @@ document.querySelector('#form_register').addEventListener('submit', async (event
   event.preventDefault();
 
   const formIncome = {
-    value: document.querySelector('#register_value').value,
+    user: userId,
+    value: +document.querySelector('#register_value').value,
     date: document.querySelector('#register_date').value,
     category: document.querySelector('#register_category').value,
     description: document.querySelector('#register_description').value,
@@ -242,14 +260,19 @@ function insertGoal(formIncome) {
 
 async function getIncomes() {
   try {
-    const response = await fetch(`${BACKEND_URL}/incomes/`)
+    const response = await fetch(`${BACKEND_URL}/incomes/${userId}`)
     const incomesBack = await response.json()
     return incomesBack
   } catch (error) {
     console.error(error)
   }
   
-}$(document).on('click', ".btn_row_delete", function (e) {
+}
+
+
+//  -------------- delete ---------------------
+
+$(document).on('click', ".btn_row_delete", function (e) {
   var r = $(this).closest('tr').remove();
   
 });

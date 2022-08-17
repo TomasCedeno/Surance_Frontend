@@ -88,10 +88,22 @@ function insertIncome(income) {
 }
 //#endregion
 
+//#region INSERT EXPENSES
+function insertExpense(expense) {
+	let tr = document.createElement('tr')
+
+	tr.innerHTML = `
+	<td>${expense.value}</td>
+	<td>${expense.description}</td>
+	`
+	expensesTable.appendChild(tr)
+}
+//#endregion
+
 //#region GET GOALS
 async function getGoals() {
 	try {
-		const response = await fetch(`${BACKEND_URL}/goals/`)
+		const response = await fetch(`${BACKEND_URL}/goals/${userId}`)
 		const goals = await response.json()
 		return goals
 	} catch (error) {
@@ -103,9 +115,21 @@ async function getGoals() {
 //#region GET INCOMES
 async function getIncomes() {
 	try {
-		const response = await fetch(`${BACKEND_URL}/incomes/`)
+		const response = await fetch(`${BACKEND_URL}/incomes/${userId}`)
 		const incomes = await response.json()
 		return incomes.slice(0, 5)
+	} catch (error) {
+		console.error(error)
+	}
+}
+//#endregion
+
+//#region GET EXPENSES
+async function getExpenses() {
+	try {
+		const response = await fetch(`${BACKEND_URL}/expenses/${userId}`)
+		const expenses = await response.json()
+		return expenses.slice(0, 5)
 	} catch (error) {
 		console.error(error)
 	}
@@ -129,6 +153,7 @@ async function loadData() {
 	user = await getUser()
 	goals = await getGoals()
 	incomes = await getIncomes()
+	expenses = await getExpenses()
 
 	document.querySelector('#userName').innerHTML = `Hola ${user.userName}`
 
@@ -142,6 +167,11 @@ async function loadData() {
 	incomesTable.innerHTML = ''
 	incomes.forEach((income) => {
 		insertIncome(income)
+	})
+
+	expensesTable.innerHTML = ''
+	expenses.forEach((expense) => {
+		insertExpense(expense)
 	})
 
 	loadProgress()

@@ -1,7 +1,24 @@
 const BACKEND_URL = 'http://localhost:8000'
+const userId = localStorage.getItem('userId')
 const tableDiv = document.querySelector('#tbody_expense')
 headTable()
 loadData()
+
+
+//#region LOGOUT SECTION
+if(!userId){
+	logOut()
+}
+
+document.querySelector('#btnLogout').addEventListener('click', logOut)
+
+function logOut(){
+	localStorage.clear()
+	alert('Se cerrará tu sesión')
+	location.replace('index.html')
+}
+//#endregion
+
 
 async function loadData() {
   expensesBack = await getExpenses()
@@ -206,7 +223,8 @@ document.querySelector('#form_register').addEventListener('submit', async (event
   event.preventDefault();
 
   const formExpense = {
-    value: document.querySelector('#register_value').value,
+    user: userId,
+    value: +document.querySelector('#register_value').value,
     date: document.querySelector('#register_date').value,
     category: document.querySelector('#register_category').value,
     description: document.querySelector('#register_description').value,
@@ -250,7 +268,7 @@ function insertGoal(formExpense) {
 
 async function getExpenses() {
   try {
-    const response = await fetch(`${BACKEND_URL}/expenses/`)
+    const response = await fetch(`${BACKEND_URL}/expenses/${userId}`)
     const expensesBack = await response.json()
     return expensesBack
   } catch (error) {
