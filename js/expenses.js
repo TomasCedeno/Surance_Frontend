@@ -6,13 +6,13 @@ loadData()
 
 
 //#region LOGOUT SECTION
-if(!userId){
+if (!userId) {
 	logOut()
 }
 
 document.querySelector('#btnLogout').addEventListener('click', logOut)
 
-function logOut(){
+function logOut() {
 	localStorage.clear()
 	alert('Se cerrará tu sesión')
 	location.replace('index.html')
@@ -21,115 +21,115 @@ function logOut(){
 
 
 async function loadData() {
-  expensesBack = await getExpenses()
+	expensesBack = await getExpenses()
 
-  expensesBack.forEach((formExpense) => {
-    insertGoal(formExpense)
-  })
-  loadTable()
+	expensesBack.forEach((formExpense) => {
+		insertGoal(formExpense)
+	})
+	loadTable()
 }
 
 // filter table
 
 function headTable() {
-  $(document).ready(function () {
-    $('#table_expense thead tr')
-      .clone(true)
-      .addClass('filters')
-      .appendTo('#table_expense thead');
-  });
+	$(document).ready(function () {
+		$('#table_expense thead tr')
+			.clone(true)
+			.addClass('filters')
+			.appendTo('#table_expense thead');
+	});
 }
 
 
 function loadTable() {
-  $(document).ready(function () {
-    $('#table_expense thead tr')
+	$(document).ready(function () {
+		$('#table_expense thead tr')
 
-    var table = $('#table_expense').DataTable({
-      "columnDefs": [
-        { "width": "7%", "targets": 4 }
-      ],
-      orderCellsTop: true,
-      responsive: true,
-      fixedHeader: true,
+		var table = $('#table_expense').DataTable({
+			"columnDefs": [
+				{ "width": "7%", "targets": 4 }
+			],
+			orderCellsTop: true,
+			responsive: true,
+			fixedHeader: true,
 
-      initComplete: function () {
-        var api = this.api();
-
-
-        api
-          .columns([0, 1, 2, 3])
-          .eq(0)
-          .each(function (colIdx) {
+			initComplete: function () {
+				var api = this.api();
 
 
-            /* Getting the header of the column. */
-            var cell = $('.filters th').eq(
-              $(api.column(colIdx).header()).index()
-            );
-            /* Creating a filter for each column. */
-            var title = $(cell).text();
-            $(cell).html('<input type="text" placeholder="' + title + '" />');
-            $(
-              'input',
-              $('.filters th').eq($(api.column(colIdx).header()).index())
-            )
-              /* A function that is called when the input changes. */
-              .off('keyup change')
-              .on('change', function (e) {
+				api
+					.columns([0, 1, 2, 3])
+					.eq(0)
+					.each(function (colIdx) {
 
-                $(this).attr('title', $(this).val());
-                var regexr = '({search})';
-                api
-                  .column(colIdx)
-                  .search(
-                    this.value != ''
-                      ? regexr.replace('{search}', '(((' + this.value + ')))')
-                      : '',
-                    this.value != '',
-                    this.value == ''
-                  )
-                  .draw();
-              })
-              /* A function that is called when the input changes. */
-              .on('keyup', function (e) {
-                e.stopPropagation();
 
-                $(this).trigger('change');
-                $(this)
-                  .focus()[0]
-              });
-          });
+						/* Getting the header of the column. */
+						var cell = $('.filters th').eq(
+							$(api.column(colIdx).header()).index()
+						);
+						/* Creating a filter for each column. */
+						var title = $(cell).text();
+						$(cell).html('<input type="text" placeholder="' + title + '" />');
+						$(
+							'input',
+							$('.filters th').eq($(api.column(colIdx).header()).index())
+						)
+							/* A function that is called when the input changes. */
+							.off('keyup change')
+							.on('change', function (e) {
 
-      },
-      "language": {
-        "processing": "Procesando...",
-        "lengthMenu": "Mostrar _MENU_ registros",
-        "zeroRecords": "No se encontraron resultados",
-        "emptyTable": "Ningún dato disponible en esta tabla",
-        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "search": "Buscar:",
-        "infoThousands": ",",
-        "loadingRecords": "Cargando...",
-        "paginate": {
-          "first": "Primero",
-          "last": "Último",
-          "next": "Siguiente",
-          "previous": "Anterior"
-        },
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
-      }
+								$(this).attr('title', $(this).val());
+								var regexr = '({search})';
+								api
+									.column(colIdx)
+									.search(
+										this.value != ''
+											? regexr.replace('{search}', '(((' + this.value + ')))')
+											: '',
+										this.value != '',
+										this.value == ''
+									)
+									.draw();
+							})
+							/* A function that is called when the input changes. */
+							.on('keyup', function (e) {
+								e.stopPropagation();
 
-    });
+								$(this).trigger('change');
+								$(this)
+									.focus()[0]
+							});
+					});
 
-  });
+			},
+			"language": {
+				"processing": "Procesando...",
+				"lengthMenu": "Mostrar _MENU_ registros",
+				"zeroRecords": "No se encontraron resultados",
+				"emptyTable": "Ningún dato disponible en esta tabla",
+				"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+				"search": "Buscar:",
+				"infoThousands": ",",
+				"loadingRecords": "Cargando...",
+				"paginate": {
+					"first": "Primero",
+					"last": "Último",
+					"next": "Siguiente",
+					"previous": "Anterior"
+				},
+				"info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
+			}
+
+		});
+
+	});
 
 }
 function destroyTable() {
-  var table = $('#table_expense').DataTable();
-  table.clear()
-  table.destroy();
+	var table = $('#table_expense').DataTable();
+	table.clear()
+	table.destroy();
 }
 
 
@@ -137,78 +137,78 @@ function destroyTable() {
 
 
 var options = {
-  series: [{
-    name: 'Egresos',
-    data: [2500000, 2000000, 1950000, 3000000, 1950000, 2500000]
-  }],
-  chart: {
-    height: 260,
-    type: 'bar',
-  },
-  plotOptions: {
-    bar: {
-      borderRadius: 10,
-      dataLabels: {
-        position: 'top', // top, center, bottom
-      },
-    }
-  },
-  dataLabels: {
-    enabled: true,
-    offsetY: -14,
-    style: {
-      fontSize: '11px',
-      colors: ["#304758"]
-    }
-  },
+	series: [{
+		name: 'Egresos',
+		data: [2500000, 2000000, 1950000, 3000000, 1950000, 2500000]
+	}],
+	chart: {
+		height: 260,
+		type: 'bar',
+	},
+	plotOptions: {
+		bar: {
+			borderRadius: 10,
+			dataLabels: {
+				position: 'top', // top, center, bottom
+			},
+		}
+	},
+	dataLabels: {
+		enabled: true,
+		offsetY: -14,
+		style: {
+			fontSize: '11px',
+			colors: ["#304758"]
+		}
+	},
 
-  xaxis: {
-    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    position: 'top',
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
-    crosshairs: {
-      fill: {
-        type: 'gradient',
-        gradient: {
-          colorFrom: '#D8E3F0',
-          colorTo: '#BED1E6',
-          stops: [0, 100],
-          opacityFrom: 0.4,
-          opacityTo: 0.5,
-        }
-      }
-    },
-    tooltip: {
-      enabled: true,
-    }
-  },
-  yaxis: {
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false,
-    },
-    labels: {
-      show: false,
+	xaxis: {
+		categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+		position: 'top',
+		axisBorder: {
+			show: false
+		},
+		axisTicks: {
+			show: false
+		},
+		crosshairs: {
+			fill: {
+				type: 'gradient',
+				gradient: {
+					colorFrom: '#D8E3F0',
+					colorTo: '#BED1E6',
+					stops: [0, 100],
+					opacityFrom: 0.4,
+					opacityTo: 0.5,
+				}
+			}
+		},
+		tooltip: {
+			enabled: true,
+		}
+	},
+	yaxis: {
+		axisBorder: {
+			show: false
+		},
+		axisTicks: {
+			show: false,
+		},
+		labels: {
+			show: false,
 
-    }
+		}
 
-  },
-  title: {
-    text: 'Egresos Mensuales',
-    floating: true,
-    offsetY: 240,
-    align: 'center',
-    style: {
-      color: '#444'
-    }
-  }
+	},
+	title: {
+		text: 'Egresos Mensuales',
+		floating: true,
+		offsetY: 240,
+		align: 'center',
+		style: {
+			color: '#444'
+		}
+	}
 };
 
 var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
@@ -220,66 +220,81 @@ chart.render();
 
 
 document.querySelector('#form_register').addEventListener('submit', async (event) => {
-  event.preventDefault();
+	event.preventDefault();
 
-  const formExpense = {
-    user: userId,
-    value: +document.querySelector('#register_value').value,
-    date: document.querySelector('#register_date').value,
-    category: document.querySelector('#register_category').value,
-    description: document.querySelector('#register_description').value,
-  }
+	const formExpense = {
+		user: userId,
+		value: +document.querySelector('#register_value').value,
+		date: document.querySelector('#register_date').value,
+		category: document.querySelector('#register_category').value,
+		description: document.querySelector('#register_description').value,
+	}
 
-  await sendJSON(formExpense)
+	await sendJSON(formExpense)
 
-  event.target.reset()
-  destroyTable()
-  loadData()
+	event.target.reset()
+	destroyTable()
+	loadData()
 
 })
 
 async function sendJSON(formExpense) {
-  try {
-    await fetch(`${BACKEND_URL}/expenses/`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formExpense)
-    })
-  } catch (error) {
-    console.error(error)
-  }
+	try {
+		await fetch(`${BACKEND_URL}/expenses/`, {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formExpense)
+		})
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 function insertGoal(formExpense) {
-  let tbody = document.createElement('tr')
-  tbody.innerHTML = `        
-          
-            <td>${formExpense.value}</td>
-            <td>${formExpense.date}</td>
-            <td>${formExpense.category}</td>
-            <td>${formExpense.description}</td>
-            <td ><button class="btn_row_delete" id="btn_delete" type="submit">Eliminar</button></td>               
+	let tbody = document.createElement('tr')
+	tbody.innerHTML = `        
+		<td>${formExpense.value}</td>
+		<td>${formExpense.date}</td>
+		<td>${formExpense.category}</td>
+		<td>${formExpense.description}</td>
+		<td><button class="btn_row_delete" id="btn_delete" type="submit" onclick="deleteExpense(${formExpense.id})">Eliminar</button></td>               
 	`
-  tableDiv.appendChild(tbody)
+	tableDiv.appendChild(tbody)
 }
 
 async function getExpenses() {
-  try {
-    const response = await fetch(`${BACKEND_URL}/expenses/${userId}`)
-    const expensesBack = await response.json()
-    return expensesBack
-  } catch (error) {
-    console.error(error)
-  }
+	try {
+		const response = await fetch(`${BACKEND_URL}/expenses/${userId}`)
+		const expensesBack = await response.json()
+		return expensesBack
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 //  -------------- delete ---------------------
 
-$(document).on('click', ".btn_row_delete", function (e) {
-  var r = $(this).closest('tr').remove();
-  
-});
+async function deleteExpense(expenseId) {
+	try {
+		await fetch(`${BACKEND_URL}/expenses/`, {
+			method: 'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ user: userId, id: expenseId })
+		}).then(res => {
+			if (res.status == 204) {
+				alert('Egreso eliminado exitosamente.')
+				destroyTable()
+				loadData()
+			}
+		})
+	} catch (error) {
+		console.error(error)
+	}
+}
 
