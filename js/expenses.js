@@ -1,96 +1,122 @@
 const BACKEND_URL = 'http://localhost:8000'
+const tableDiv = document.querySelector('#tbody_expense')
+headTable()
+loadData()
+
+async function loadData() {
+  expensesBack = await getExpenses()
+
+  expensesBack.forEach((formExpense) => {
+    insertGoal(formExpense)
+  })
+  loadTable()
+}
 
 // filter table
 
-$(document).ready(function () {
-  $('#table_expense thead tr')
-    .clone(true)
-    .addClass('filters')
-    .appendTo('#table_expense thead');
+function headTable() {
+  $(document).ready(function () {
+    $('#table_expense thead tr')
+      .clone(true)
+      .addClass('filters')
+      .appendTo('#table_expense thead');
+  });
+}
 
-  var table = $('#table_expense').DataTable({
-    "columnDefs": [
-      { "width": "7%", "targets": 4 }
-    ],
-    orderCellsTop: true,
-    responsive:true,
-    fixedHeader: true,
 
-    initComplete: function () {
-      var api = this.api();
-      
+function loadTable() {
+  $(document).ready(function () {
+    $('#table_expense thead tr')
 
-      api
-        .columns([0,1,2,3])
-        .eq(0)
-        .each(function (colIdx) {
+    var table = $('#table_expense').DataTable({
+      "columnDefs": [
+        { "width": "7%", "targets": 4 }
+      ],
+      orderCellsTop: true,
+      responsive: true,
+      fixedHeader: true,
 
-          var cell = $('.filters th').eq(
-            $(api.column(colIdx).header()).index()
-          );
-          var title = $(cell).text();
-          $(cell).html('<input type="text" placeholder="' + title + '" />');
-          $(
-            'input',
-            $('.filters th').eq($(api.column(colIdx).header()).index())
-          )
-            .off('keyup change')
-            .on('change', function (e) {
+      initComplete: function () {
+        var api = this.api();
 
-              $(this).attr('title', $(this).val());
-              var regexr = '({search})';
-              api
-                .column(colIdx)
-                .search(
-                  this.value != ''
-                    ? regexr.replace('{search}', '(((' + this.value + ')))')
-                    : '',
-                  this.value != '',
-                  this.value == ''
-                )
-                .draw();
-            })
-            .on('keyup', function (e) {
-              e.stopPropagation();
 
-              $(this).trigger('change');
-              $(this)
-                .focus()[0]
-            });
-        });
+        api
+          .columns([0, 1, 2, 3])
+          .eq(0)
+          .each(function (colIdx) {
 
-    },
-    "language": {
-      "processing": "Procesando...",
-      "lengthMenu": "Mostrar _MENU_ registros",
-      "zeroRecords": "No se encontraron resultados",
-      "emptyTable": "Ningún dato disponible en esta tabla",
-      "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-      "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-      "search": "Buscar:",
-      "infoThousands": ",",
-      "loadingRecords": "Cargando...",
-      "paginate": {
-        "first": "Primero",
-        "last": "Último",
-        "next": "Siguiente",
-        "previous": "Anterior"
+
+            /* Getting the header of the column. */
+            var cell = $('.filters th').eq(
+              $(api.column(colIdx).header()).index()
+            );
+            /* Creating a filter for each column. */
+            var title = $(cell).text();
+            $(cell).html('<input type="text" placeholder="' + title + '" />');
+            $(
+              'input',
+              $('.filters th').eq($(api.column(colIdx).header()).index())
+            )
+              /* A function that is called when the input changes. */
+              .off('keyup change')
+              .on('change', function (e) {
+
+                $(this).attr('title', $(this).val());
+                var regexr = '({search})';
+                api
+                  .column(colIdx)
+                  .search(
+                    this.value != ''
+                      ? regexr.replace('{search}', '(((' + this.value + ')))')
+                      : '',
+                    this.value != '',
+                    this.value == ''
+                  )
+                  .draw();
+              })
+              /* A function that is called when the input changes. */
+              .on('keyup', function (e) {
+                e.stopPropagation();
+
+                $(this).trigger('change');
+                $(this)
+                  .focus()[0]
+              });
+          });
+
       },
-      "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
-    }
+      "language": {
+        "processing": "Procesando...",
+        "lengthMenu": "Mostrar _MENU_ registros",
+        "zeroRecords": "No se encontraron resultados",
+        "emptyTable": "Ningún dato disponible en esta tabla",
+        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "search": "Buscar:",
+        "infoThousands": ",",
+        "loadingRecords": "Cargando...",
+        "paginate": {
+          "first": "Primero",
+          "last": "Último",
+          "next": "Siguiente",
+          "previous": "Anterior"
+        },
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
+      }
+
+    });
 
   });
 
-});
+}
+function destroyTable() {
+  var table = $('#table_expense').DataTable();
+  table.clear()
+  table.destroy();
+}
 
-//  -------------- Eliminar ---------------------
 
-$(document).on('click',".btn_row_delete", function(e)
-{
-  var r = $(this).closest('tr').remove();
-});
 //  -------------- Graficas ---------------------
-
 
 
 var options = {
@@ -170,3 +196,72 @@ var options = {
 
 var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
 chart.render();
+
+// conexion ---------------------------------------------------------------
+// conexion ---------------------------------------------------------------
+// conexion ---------------------------------------------------------------
+
+
+document.querySelector('#form_register').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formExpense = {
+    value: document.querySelector('#register_value').value,
+    date: document.querySelector('#register_date').value,
+    category: document.querySelector('#register_category').value,
+    description: document.querySelector('#register_description').value,
+  }
+
+  await sendJSON(formExpense)
+
+  event.target.reset()
+  destroyTable()
+  loadData()
+
+})
+
+async function sendJSON(formExpense) {
+  try {
+    await fetch(`${BACKEND_URL}/expenses/`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formExpense)
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+function insertGoal(formExpense) {
+  let tbody = document.createElement('tr')
+  tbody.innerHTML = `        
+          
+            <td>${formExpense.value}</td>
+            <td>${formExpense.date}</td>
+            <td>${formExpense.category}</td>
+            <td>${formExpense.description}</td>
+            <td ><button class="btn_row_delete" id="btn_delete" type="submit">Eliminar</button></td>               
+	`
+  tableDiv.appendChild(tbody)
+}
+
+async function getExpenses() {
+  try {
+    const response = await fetch(`${BACKEND_URL}/expenses/`)
+    const expensesBack = await response.json()
+    return expensesBack
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+//  -------------- delete ---------------------
+
+$(document).on('click', ".btn_row_delete", function (e) {
+  var r = $(this).closest('tr').remove();
+  
+});
+

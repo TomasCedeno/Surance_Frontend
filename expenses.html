@@ -69,30 +69,29 @@
 				<div class="expenses_page card">
 
 					<div class="title">Registro de Egresos</div>
-					<form class="form_register" action="#">
+					<form id="form_register" method="post">
 
 
 						<!--<span class="details_input">Valor</span>-->
 
 						<div class="position_register">
 							<span class="details_input ">Valor</span>
-							<input type="number" placeholder="Ingrese el valor" max="999999999999999" maxlength="5"
-								required>
+							<input type="number" id="register_value" placeholder="Ingrese el valor" max="999999999999999" required>
 						</div>
 
 						<div class="position_register">
 							<span class="details_input">Fecha</span>
-							<input type="date" placeholder="Ingrese DD/MM/AA" required>
+							<input type="date" id="register_date" placeholder="Ingrese DD/MM/AA" required>
 						</div>
 
 						<div class="position_register">
 							<span class="details_input">Categoria</span>
-							<input type="text" placeholder="Ingrese una Categoria" maxlength="30" required>
+							<input type="text" id="register_category" placeholder="Ingrese una Categoria" maxlength="30" required>
 						</div>
 
 						<div class="position_register">
 							<span class="details_input">Descripción</span>
-							<input type="text" placeholder="Ingrese una Descripción" maxlength="30">
+							<input type="text" id="register_description" placeholder="Ingrese una Descripción" maxlength="30">
 						</div>
 
 
@@ -123,26 +122,19 @@
 
 
 						<table class="table-info table" id="table_expense">
-							<thead>
-								<tr id>
-									<th>Valor</th>
-									<th>Fecha</th>
-									<th>Categoría</th>
-									<th>Descripción</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>20.000</td>
-									<td>15/04/2022</td>
-									<td>Alimento</td>
-									<td>Zanahoria y papa </td>
-									<td><button class="btn_row_delete" type="submit">Eliminar</button></td>
-								</tr>
-								
-							</tbody>
+						<thead>
+							<tr id>
+								<th>Valor</th>
+								<th>Fecha</th>
+								<th>Categoría</th>
+								<th>Descripción</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="tbody_expense">
 
+						</tbody>
+						
 						</table>
 					</div>
 				</div>

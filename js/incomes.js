@@ -1,11 +1,30 @@
+const BACKEND_URL = 'http://localhost:8000'
+const tableDiv = document.querySelector('#tbody_income')
+headTable()
+loadData()
 
+async function loadData() {
+  incomesBack = await getIncomes()
+
+  incomesBack.forEach((formIncome) => {
+    insertGoal(formIncome)
+  })
+  loadTable()
+}
 // filter table
 
+function headTable() {
+  $(document).ready(function () {
+    $('#table_income thead tr')
+      .clone(true)
+      .addClass('filters')
+      .appendTo('#table_income thead');
+  });
+}
+
+function loadTable() {
 $(document).ready(function () {
   $('#table_income thead tr')
-    .clone(true)
-    .addClass('filters')
-    .appendTo('#table_income thead');
 
   var table = $('#table_income').DataTable({
 
@@ -82,20 +101,19 @@ $(document).ready(function () {
   });
 
 });
+}
 
-//  -------------- Eliminar ---------------------
-
-$(document).on('click',".btn_row_delete", function(e)
-{
-  var r = $(this).closest('tr').remove();
-});
-
+function destroyTable() {
+  var table = $('#table_income').DataTable();
+  table.clear()
+  table.destroy();
+}
 //  -------------- Graficas ---------------------
 
 
 var options = {
   series: [{
-    name: 'Egresos',
+    name: 'Ingresos',
     data: [2500000, 2000000, 1950000, 3000000, 1950000, 2500000]
   }],
   chart: {
@@ -158,7 +176,7 @@ var options = {
 
   },
   title: {
-    text: 'Egresos Mensuales',
+    text: 'Ingresos Mensuales',
     floating: true,
     offsetY: 240,
     align: 'center',
@@ -170,3 +188,68 @@ var options = {
 
 var chart = new ApexCharts(document.querySelector("#columnchart_material"), options);
 chart.render();
+
+// conexion ---------------------------------------------------------------
+// conexion ---------------------------------------------------------------
+// conexion ---------------------------------------------------------------
+
+
+document.querySelector('#form_register').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formIncome = {
+    value: document.querySelector('#register_value').value,
+    date: document.querySelector('#register_date').value,
+    category: document.querySelector('#register_category').value,
+    description: document.querySelector('#register_description').value,
+  }
+
+  await sendJSON(formIncome)
+
+  event.target.reset()
+  destroyTable()
+  loadData()
+
+})
+
+async function sendJSON(formIncome) {
+  try {
+    await fetch(`${BACKEND_URL}/incomes/`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formIncome)
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+function insertGoal(formIncome) {
+  let tbody = document.createElement('tr')
+  tbody.innerHTML = `        
+          
+            <td>${formIncome.value}</td>
+            <td>${formIncome.date}</td>
+            <td>${formIncome.category}</td>
+            <td>${formIncome.description}</td>
+            <td ><button class="btn_row_delete" id="btn_delete" type="submit">Eliminar</button></td>               
+	`
+  tableDiv.appendChild(tbody)
+}
+
+async function getIncomes() {
+  try {
+    const response = await fetch(`${BACKEND_URL}/incomes/`)
+    const incomesBack = await response.json()
+    return incomesBack
+  } catch (error) {
+    console.error(error)
+  }
+  
+}$(document).on('click', ".btn_row_delete", function (e) {
+  var r = $(this).closest('tr').remove();
+  
+});

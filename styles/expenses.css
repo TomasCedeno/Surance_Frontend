@@ -51,7 +51,7 @@ main .data .expenses_page {
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-.form_register {
+#form_register {
     width: 100%;
 }
 
@@ -61,7 +61,7 @@ main .data .expenses_page {
     width: 49%;
 }
 
-.form_register input {
+#form_register input {
 
     padding: 10px;
     margin-bottom: 10px;
@@ -75,14 +75,14 @@ main .data .expenses_page {
     transition: all 0.3s ease;
 }
 
-.form_register span {
+#form_register span {
     display: flex;
     font-size: 16px;
     font-weight: 500;
     padding-bottom: 5px;
 }
 
-.form_register input:focus {
+#form_register input:focus {
     border-color: #9b59b6
 }
 
