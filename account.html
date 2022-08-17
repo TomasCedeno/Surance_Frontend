@@ -48,7 +48,7 @@
 					alt="">
 				<ul class="profile-link">
 					<li><a href="./account.html"><i class='bx bxs-user-circle icon'></i> Cuenta</a></li>
-					<li><a href="./index.html"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
+					<li><a id="btnLogout"><i class='bx bxs-log-out-circle'></i> Cerrar Sesión</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -74,21 +74,15 @@
 					<h1 class="titles">Información Personal</h1>
 
 					<h2>Nombre Completo</h2>
-					<input type="text" class="input" value="Juan Tomas Bermudez">
+					<input itype="text" class="input" id="name">
 
 					<h2>Username</h2>
-					<input type="text" class="input" value="JuanMa03">
-
-					<h2>Fecha de nacimiento</h2>
-					<input type="text" class="input" value="15/05/2000">
-
-					<h2>País</h2>
-					<input type="text" class="input" value="Colombia">
+					<input type="text" class="input" id="userName">
 					
 					<h2>Correo</h2>
-					<input type="text" class="input" value="jtbermudez04@gmail.com">
+					<input type="text" class="input" id="email">
 
-					<button class="btn">Actualizar</button>
+					<button class="btn" id="btnUpdate">Actualizar</button>
 
 					<div class="perfil-usuario-avatar">
 						<img src="https://www.elcolombiano.com/binrepository/841x562/0c0/0d0/none/11101/UPMB/40305366_40305366_20220713144007.jpg"
@@ -103,15 +97,15 @@
 					<h1 class="titles_2">Cambiar Contraseña</h1>
 
 					<h2>Contraseña anterior</h2>
-					<input type="password" class="input" value="contraseña_en_*_">
+					<input type="password" class="input">
 
 					<h2>Contraseña nueva</h2>
-					<input type="password" class="input" value="contraseña_en_*_">
+					<input type="password" class="input" id="password1">
 
 					<h2>Confirmar contraseña nueva</h2>
-					<input type="password" class="input" value="contraseña_en_*_">
+					<input type="password" class="input" id="password2">
 
-					<button class="btn">Actualizar</button>
+					<button class="btn" id="btnChangePassword">Actualizar</button>
 				</div>
 			</div>
 		</div> 
